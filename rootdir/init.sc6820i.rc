@@ -171,6 +171,7 @@ chown bluetooth net_bt_stack  /dev/ttyS0
     setprop status.battery.level_scale 10
 
 # Audio (Earjack)
+    mkdir /data/local/audio_tmp 0771 system system
     chown system radio /sys/class/audio/earjack/key_state
     chown system radio /sys/class/audio/earjack/state
     chown media system /sys/class/audio/earjack/reselect_jack

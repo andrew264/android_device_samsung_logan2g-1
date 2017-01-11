@@ -81,18 +81,22 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/tiny_hw.xml:system/etc/tiny_hw.xml \
     $(LOCAL_PATH)/configs/audio/audio_hw.xml:system/etc/audio_hw.xml
 
-# These are the hardware-specific features
+# Permissions
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
-    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
-    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-    frameworks/native/data/etc/android.hardware.location.xml:system/etc/permissions/android.hardware.location.xml \
-    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-    frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
-    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
-    frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
-    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
+	frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+	frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+	frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
+	frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
+	frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+	frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
+	frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+ 	frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
+	frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+	frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
+	frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+	packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml \
+ 	frameworks/native/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml\
+
 
 # Filesystem
 PRODUCT_PACKAGES += \
@@ -112,18 +116,36 @@ PRODUCT_PACKAGES += \
     ebtables \
     ethertypes
 
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.hwui.drop_shadow_cache_size=1 \
+	ro.hwui.gradient_cache_size=0.2 \
+	ro.hwui.layer_cache_size=6 \
+	ro.hwui.path_cache_size=2 \
+	ro.hwui.r_buffer_cache_size=1 \
+	ro.hwui.texture_cache_size=8    
+
 # Audio
 PRODUCT_PACKAGES += \
 	audio.a2dp.default \
+	audio.usb.default \
+	audio.r_submix.default \
+	libtinyalsa \
+	tinymix \
+    	libatchannel \
+	libatchannel_wrapper \
 	audio.primary.sc6820i \
 	audio_policy.sc6820i \
-	audio.r_submix.default \
-	audio.usb.default \
-	audio_vbc_eq \
-	libaudio-resampler \
-	libatchannel \
-	libatchannel_wrapper \
-	libtinyalsa
+	libaudiopolicy \
+	libvbeffect \
+	libvbpga \
+	audio_vbc_eq 
+
+PRODUCT_PACKAGES += \
+	libengclient
+
+# MemoryHeapIon needed by camera and HWC
+PRODUCT_PACKAGES += \
+	libmemoryheapion
 
 # Usb accessory
 PRODUCT_PACKAGES += \

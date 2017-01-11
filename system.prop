@@ -59,7 +59,7 @@ persist.radio.multisim.config=dsds
 conn.connectivity_change_delay = 0
 
 # usb
-persist.sys.usb.config=mtp
+persist.sys.usb.config=mtp,adb
 
 # WiFi
 wifi.supplicant_scan_interval=180

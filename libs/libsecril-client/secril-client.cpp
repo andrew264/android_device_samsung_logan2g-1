@@ -471,7 +471,6 @@ int Connect_QRILD(HRilClient client) {
     return RIL_CLIENT_ERR_SUCCESS;
 }
 
-#if defined(SEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM)    // mook_120209 Enable multiclient
 /**
  * @fn    int Connect_RILD_Second(void)
  *
@@ -535,7 +534,7 @@ int Connect_RILD_Second(HRilClient client)    {
 
     return RIL_CLIENT_ERR_SUCCESS;
 }
-#endif
+
 
 /**
  * @fn  int isConnected_RILD(HRilClient client)
